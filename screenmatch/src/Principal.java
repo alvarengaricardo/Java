@@ -1,4 +1,5 @@
 import br.com.alvarenga.screenmatch.modelos.Filme;
+import br.com.alvarenga.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
@@ -14,5 +15,15 @@ public class Principal {
         meuFilme.exibirFichaTecnica();
         System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.calcularMedia());
+
+        Serie mandalorian = new Serie();
+        mandalorian.setNome("Mandalorian");
+        mandalorian.setAnoDeLancamento(2019);
+        mandalorian.setTemporadas(3);
+        mandalorian.setEpisodiosPorTemporada(8);
+        mandalorian.setMinutosPorEpisodio(40);
+        mandalorian.exibirFichaTecnica();
+        System.out.println("Horas para maratonar: " + mandalorian.getDuracaoEmMinutos()/60);
+
     }
 }
