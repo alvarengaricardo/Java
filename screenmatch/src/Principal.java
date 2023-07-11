@@ -1,4 +1,6 @@
 import br.com.alvarenga.screenmatch.calculos.CalculadoraDeTempo;
+import br.com.alvarenga.screenmatch.calculos.FiltroRecomendacao;
+import br.com.alvarenga.screenmatch.modelos.Episodio;
 import br.com.alvarenga.screenmatch.modelos.Filme;
 import br.com.alvarenga.screenmatch.modelos.Serie;
 
@@ -15,9 +17,9 @@ public class Principal {
         meuFilme2.setDuracaoEmMinutos(120);
 
         meuFilme.exibirFichaTecnica();
-        meuFilme.avaliar(9);
-        meuFilme.avaliar(8);
         meuFilme.avaliar(10);
+        meuFilme.avaliar(10);
+        meuFilme.avaliar(8);
         meuFilme.exibirFichaTecnica();
         System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.calcularMedia());
@@ -42,6 +44,17 @@ public class Principal {
         calculadoraDeTempo.incluir(mandalorian);
         //calculadoraDeTempo.incluir(meuFilme2);
         System.out.println("Para assistir: " + calculadoraDeTempo.getTempoTotal()/60 + " horas.");
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtrar(meuFilme);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setNome("Piloto");
+        episodio.setSerie(mandalorian);
+        episodio.setTotalVisualizacoes(732);
+        filtro.filtrar(episodio);
+
 
     }
 }
