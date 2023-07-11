@@ -23,8 +23,10 @@ public class Principal {
         mandalorian.setEpisodiosPorTemporada(8);
         mandalorian.setMinutosPorEpisodio(40);
         mandalorian.setAtiva(true);
+        mandalorian.setIncluidoNoPlano(true);
         mandalorian.exibirFichaTecnica();
         System.out.println("Horas para maratonar: " + mandalorian.getDuracaoEmMinutos()/60);
+        mandalorian.exibirFichaTecnica();
 
     }
 }

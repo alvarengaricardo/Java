@@ -1,9 +1,9 @@
 package br.com.alvarenga.screenmatch.modelos;
 
 public class Titulo {
-    private String nome;
-    private int anoDeLancamento;
-    private boolean incluidoNoPlano;
+    protected String nome;
+    protected int anoDeLancamento;
+    protected boolean incluidoNoPlano;
     private double somaDasAvalicoes;
     private int totalDeAvaliacoes = 0;
     private int duracaoEmMinutos;
