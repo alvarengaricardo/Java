@@ -1,3 +1,4 @@
+import br.com.alvarenga.screenmatch.calculos.CalculadoraDeTempo;
 import br.com.alvarenga.screenmatch.modelos.Filme;
 import br.com.alvarenga.screenmatch.modelos.Serie;
 
@@ -7,6 +8,11 @@ public class Principal {
         meuFilme.setNome("O poderoso chefão");
         meuFilme.setAnoDeLancamento(1972);
         meuFilme.setDuracaoEmMinutos(180);
+
+        Filme meuFilme2 = new Filme();
+        meuFilme2.setNome("Filme");
+        meuFilme2.setAnoDeLancamento(2023);
+        meuFilme2.setDuracaoEmMinutos(120);
 
         meuFilme.exibirFichaTecnica();
         meuFilme.avaliar(9);
@@ -27,6 +33,15 @@ public class Principal {
         mandalorian.exibirFichaTecnica();
         System.out.println("Horas para maratonar: " + mandalorian.getDuracaoEmMinutos()/60);
         mandalorian.exibirFichaTecnica();
+
+        CalculadoraDeTempo calculadoraDeTempo = new CalculadoraDeTempo();
+        calculadoraDeTempo.incluir(meuFilme);
+        calculadoraDeTempo.incluir(meuFilme2);
+        //System.out.println("Para assistir os filmes: " + calculadoraDeTempo.getTempoTotal() + " minutos.");
+
+        calculadoraDeTempo.incluir(mandalorian);
+        //calculadoraDeTempo.incluir(meuFilme2);
+        System.out.println("Para assistir: " + calculadoraDeTempo.getTempoTotal()/60 + " horas.");
 
     }
 }
