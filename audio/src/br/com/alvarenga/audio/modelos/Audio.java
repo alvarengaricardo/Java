@@ -2,8 +2,7 @@ package br.com.alvarenga.audio.modelos;
 
 public class Audio {
     protected String titulo;
-    protected int duracao;
-    protected int totalReproducoes;
+   protected int totalReproducoes;
     protected int curtidas;
     protected String classificacao;
 
@@ -11,27 +10,45 @@ public class Audio {
         this.titulo = titulo;
     }
 
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
-    public void setTotalReproducoes(int totalReproducoes) {
-        this.totalReproducoes = totalReproducoes;
-    }
-
-    public void setCurtidas(int curtidas) {
-        this.curtidas = curtidas;
-    }
-
-    public void setClassificacao(String classificacao) {
-        this.classificacao = classificacao;
-    }
-
     public void exibirFicha(){
         System.out.println("Título: " + titulo);
-        System.out.println("Duracao: " + duracao);
         System.out.println("Total de reproduções: " + totalReproducoes);
         System.out.println("Curtidas: " + curtidas);
         System.out.println("Classificação: " + classificacao);
+    }
+
+    public void curtir(){
+        curtidas ++;
+    }
+
+    public void avaliar(){
+
+        int nota = (int)(curtidas / 50);
+
+        switch (nota){
+            case 0:
+                classificacao = "Sem classificação.";
+                break;
+            case 1:
+                classificacao = "*";
+                break;
+            case 2:
+                classificacao = "**";
+                break;
+            case 3:
+                classificacao = "***";
+                break;
+            case 4:
+                classificacao = "****";
+                break;
+            default:
+                classificacao = "*****";
+                break;
+
+        }
+    }
+
+    public void reproduzir() {
+        totalReproducoes ++;
     }
 }
