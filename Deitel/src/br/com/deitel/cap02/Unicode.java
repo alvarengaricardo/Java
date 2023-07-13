@@ -1,11 +1,10 @@
-package br.com.deitel.cap02;
-
-import java.util.Scanner;
-
 /*
  * Exercicio 29
  * Exibir o valor Unicode de um caracter
  */
+
+package br.com.deitel.cap02;
+
 public class Unicode {
     public static void main(String[] args) {
 
@@ -17,6 +16,5 @@ public class Unicode {
         System.out.println("O valor unicode de 'r' é: " + ((int) 'r'));
         System.out.println("O valor unicode de 'Z' é: " + ((int) 'Z'));
         System.out.println("O valor unicode de 'z' é: " + ((int) 'z'));
-
     }
 }

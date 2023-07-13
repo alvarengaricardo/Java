@@ -1,11 +1,12 @@
-package br.com.deitel.cap02;
-
-import java.util.Scanner;
-
 /*
  * Exercicio 28
  * Calcular diâmetro, circunferência e área de um círculo
  */
+
+package br.com.deitel.cap02;
+
+import java.util.Scanner;
+
 public class Circulo {
     public static void main(String[] args) {
 
