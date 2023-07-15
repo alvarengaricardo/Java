@@ -5,7 +5,6 @@
 
 package br.com.deitel.cap02;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class SepararDigitos {
