@@ -27,5 +27,8 @@ public class AccountTest {
         Double deposit = input.nextDouble();
         account1.deposit(deposit);
         System.out.printf("Account1 balance is: %.2f%n", account1.getBalance());
+
+        account1.displayAcount();
+        account2.displayAcount();
     }
 }

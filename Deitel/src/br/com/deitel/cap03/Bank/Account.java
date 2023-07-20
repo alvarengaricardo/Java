@@ -31,5 +31,12 @@ public class Account {
         if (depositAmount > 0) balance = balance + depositAmount;
     }
 
+    public void displayAcount(){
+        System.out.println("****************************************");
+        System.out.printf("Name: %s%n", this.name);
+        System.out.printf("Balance %.2f%n", this.balance);
+        System.out.println("****************************************");
+    }
+
 
 }
