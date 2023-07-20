@@ -7,6 +7,10 @@ public class Account {
         this.name = name;
     }
 
+    public Account(){
+
+    }
+
     public void setName(String name){
         this.name = name;
     }
