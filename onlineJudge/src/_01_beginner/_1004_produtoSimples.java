@@ -9,6 +9,6 @@ public class _1004_produtoSimples {
         a = entrada.nextInt();
         b = entrada.nextInt();
         produto = a * b;
-        System.out.printf("SOMA = %d%n", produto);
+        System.out.printf("PROD = %d%n", produto);
     }
 }
