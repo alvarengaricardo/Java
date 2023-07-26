@@ -2,7 +2,7 @@ package _01_beginner;
 
 import java.util.Scanner;
 
-public class _002_basico {
+public class _1001_basico {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int A = entrada.nextInt();
