@@ -35,7 +35,7 @@ package _01_beginner;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class _2028_sequenciaDeSequencia {
+public class _2028_sequenciaDeSequencias {
     public static void main(String[] args) throws IOException {
         Scanner leitor = new Scanner(System.in);
         int caso = 1;
