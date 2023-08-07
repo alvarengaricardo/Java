@@ -30,5 +30,11 @@ public class AccountTest {
 
         account1.displayAcount();
         account2.displayAcount();
+
+        System.out.print("Account1 withdraw: ");
+        Double withdraw = input.nextDouble();
+        account1.withdraw(withdraw);
+        System.out.printf("Account1 balance is: %.2f%n", account1.getBalance());
+
     }
 }
