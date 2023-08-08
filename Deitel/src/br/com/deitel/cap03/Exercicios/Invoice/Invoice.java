@@ -23,7 +23,7 @@ public class Invoice {
         System.out.printf("Descrição: %s%n", this.getDescricao());
         System.out.printf("Quantidade: %d%n", this.getQuantidadeComprada());
         System.out.printf("Preço Item: %.2f%n", this.getPrecoItem());
-        System.out.printf("Total Invoice: %.2f%n", this.getInvoiceAmount());
+        System.out.printf("Total Invoice: %.2f%n%n", this.getInvoiceAmount());
     }
 
     public String getNumero() {
