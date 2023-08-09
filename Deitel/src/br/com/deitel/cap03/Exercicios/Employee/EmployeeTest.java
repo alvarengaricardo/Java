@@ -14,6 +14,5 @@ public class EmployeeTest {
         employee1.report();
         employee2.report();
 
-
     }
 }
