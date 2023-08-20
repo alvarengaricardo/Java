@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 public class Shapes extends JPanel{
     private int choice; // escolha do usuário sobre qual forma usar
-    // contrutor configura a escolha do usuário
+    // construtor configura a escolha do usuário
     public Shapes(int userChoice){
         choice = userChoice;
     }
