@@ -2,7 +2,7 @@ package br.com.deitel.Cap06;
 
 import java.util.Scanner;
 
-public class MaximumFinder {
+public class MaximumFinder2 {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -18,13 +18,7 @@ public class MaximumFinder {
     }
 
     public static double maximum(double x, double y, double z) {
-
-        double maximumValue = x;
-
-        if (y > maximumValue) maximumValue = y;
-        if (z > maximumValue) maximumValue = z;
-
-        return maximumValue;
+        return Math.max(x, Math.max(y, z));
     }
 }
 
