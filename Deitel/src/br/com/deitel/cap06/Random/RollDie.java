@@ -1,4 +1,4 @@
-package br.com.deitel.Cap06.Random;
+package br.com.deitel.cap06.Random;
 
 import java.security.SecureRandom;
 

@@ -1,13 +1,13 @@
-package br.com.deitel.Cap06;
+package br.com.deitel.cap06;
 
 import java.security.SecureRandom;
 
 public class Craps {
     private static final SecureRandom randomNumbers = new SecureRandom(); //gerador de numeros aleatórios
 
-    private enum Status {CONTINUE, WON, LOST}
+    private enum Status {CONTINUE, WON, LOST};
 
-    ; // tipo enum representando estado do jogo
+    // tipo enum representando estado do jogo
 
     // constantes para lançamentos comuns dos dados
     private static final int SNAKE_EYES = 2;
@@ -24,20 +24,18 @@ public class Craps {
         int sumOfDice = rollDice(); // primeira rolagem
 
         // determina estado e pontuação após primeiro lançamento
-        switch (sumOfDice) {
-            case SEVEN: // ganha com 7 no primeiro lançamento
-            case YO_ELEVEN: // ganha com 11 no primeiro lançamento
-                gameStatus = Status.WON;
-                break;
-            case SNAKE_EYES: // perde com 2 no primeiro lançamento
-            case TREY: // perde com 3 no primeiro lançamento
-            case BOX_CARS: // perde com 12 no primeiro lançamento
-                gameStatus = Status.LOST;
-                break;
-            default: // continua jogando, contando a pontuação
+        switch (sumOfDice) { // ganha com 7 no primeiro lançamento
+            case SEVEN, YO_ELEVEN -> // ganha com 11 no primeiro lançamento
+                    gameStatus = Status.WON;
+            // perde com 2 no primeiro lançamento
+            // perde com 3 no primeiro lançamento
+            case SNAKE_EYES, TREY, BOX_CARS -> // perde com 12 no primeiro lançamento
+                    gameStatus = Status.LOST;
+            default -> { // continua jogando, contando a pontuação
                 gameStatus = Status.CONTINUE;
                 myPoint = sumOfDice; // informa a pontuação
                 System.out.printf("Point is %d%n", myPoint);
+            }
         }
         // continua jogando
         while (gameStatus == Status.CONTINUE) {

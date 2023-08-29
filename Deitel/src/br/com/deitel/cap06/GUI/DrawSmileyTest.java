@@ -1,4 +1,4 @@
-package br.com.deitel.Cap06.GUI;
+package br.com.deitel.cap06.GUI;
 
 import javax.swing.JFrame;
 public class DrawSmileyTest {

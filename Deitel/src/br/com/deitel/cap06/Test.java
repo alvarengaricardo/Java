@@ -1,4 +1,4 @@
-package br.com.deitel.Cap06;
+package br.com.deitel.cap06;
 
 public class Test {
     public static void main(String[] args) {

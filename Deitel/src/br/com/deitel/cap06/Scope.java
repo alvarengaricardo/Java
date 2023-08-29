@@ -1,4 +1,4 @@
-package br.com.deitel.Cap06;
+package br.com.deitel.cap06;
 
 public class Scope {
     // acess[ivel para todos os métodos dessa classe
