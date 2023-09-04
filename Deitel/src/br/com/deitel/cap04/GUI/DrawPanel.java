@@ -22,5 +22,4 @@ public class DrawPanel extends JPanel {
             g.drawLine(0, 0, x, y);
         }
     }
-
 }
