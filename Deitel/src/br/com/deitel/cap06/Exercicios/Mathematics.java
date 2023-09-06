@@ -31,11 +31,21 @@ public class Mathematics {
 
     public static boolean isMultiple(int a, int b) {
         // verifica se b é multiplo de a
-        return b % a == 0;
+        return (b % a == 0);
     }
 
     public static boolean isMultiple(double a, double b) {
         // verifica se b é multiplo de a
-        return b % a == 0;
+        return (b % a == 0);
+    }
+
+    public static boolean isEven(int a) {
+        // verifica se "a" é par
+        return (a % 2 == 0);
+    }
+
+    public static boolean isEven(double a) {
+        // verifica se "a" é par
+        return (a % 2 == 0);
     }
 }
