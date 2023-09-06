@@ -11,7 +11,7 @@ public class PowerTest {
         System.out.printf("2^3: %d%n", power(2, 3));
         System.out.printf("2^4: %d%n", power(2, 4));
 
-        System.out.printf("%n%n Teste com double:%n");
+        System.out.printf("%nTeste com double:%n");
         System.out.printf("2.5^0: %.3f%n", power(2.5, 0));
         System.out.printf("2.5^1: %.3f%n", power(2.5, 1));
         System.out.printf("2.5^2: %.3f%n", power(2.5, 2));

@@ -24,8 +24,18 @@ public class Mathematics {
         return power;
     }
 
-    public static double hypotenuse(double side1, double side2){
+    public static double hypotenuse(double side1, double side2) {
         // calcula a hipotenusa a partir dos valores dos catetos
         return Math.sqrt(power(side1, 2) + power(side2, 2));
+    }
+
+    public static boolean isMultiple(int a, int b) {
+        // verifica se b é multiplo de a
+        return b % a == 0;
+    }
+
+    public static boolean isMultiple(double a, double b) {
+        // verifica se b é multiplo de a
+        return b % a == 0;
     }
 }
