@@ -67,4 +67,26 @@ public class Mathematics {
         miminum = Math.min(a, b);
         return (Math.min(miminum, c));
     }
+
+    public static boolean isPerfect(int number) {
+        int sum = 1;
+        for (int i = 2; i <= number / 2; i++) {
+            if (number % i == 0) {
+                sum = sum + i;
+            }
+            if (sum > number) return false;
+        }
+        return (sum == number);
+    }
+
+    public static boolean isPerfect(long number) {
+        int sum = 1;
+        for (int i = 2; i <= number / 2; i++) {
+            if (number % i == 0) {
+                sum = sum + i;
+            }
+            if (sum > number) return false;
+        }
+        return (sum == number);
+    }
 }
