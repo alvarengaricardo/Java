@@ -57,4 +57,10 @@ public class Mathematics {
         return (Math.PI * power(raio, 2));
     }
 
+    public static double minimum3(double a, double b, double c) {
+        double miminum = a;
+        if (a >= b) miminum = b;
+        if (b >= c) miminum = c;
+        return miminum;
+    }
 }
