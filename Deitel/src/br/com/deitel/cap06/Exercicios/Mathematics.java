@@ -48,4 +48,13 @@ public class Mathematics {
         // verifica se "a" é par
         return (a % 2 == 0);
     }
+
+    public static double circleArea(int raio) {
+        return (Math.PI * power(raio, 2));
+    }
+
+    public static double circleArea(double raio) {
+        return (Math.PI * power(raio, 2));
+    }
+
 }
