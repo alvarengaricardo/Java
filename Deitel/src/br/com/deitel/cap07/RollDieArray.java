@@ -22,9 +22,8 @@ public class RollDieArray {
 
         }
 
-        System.out.println("Face\tFrequency"); // cabeçalhos de saída
-        System.out.printf("1\t\t%7d%n2\t\t%7d%n3\t\t%7d%n4\t\t%7d%n5\t\t%7d%n6\t\t%7d%n",
-                frequency[0], frequency[1], frequency[2], frequency[3],
-                frequency[4], frequency[5]);
+        System.out.printf("%s%10s%n", "Face", "Frequency"); // cabeçalhos de saída
+        for (int face = 0; face < frequency.length; face++)
+            System.out.printf("%4d%10d%n", face + 1, frequency[face]);
     }
 }
