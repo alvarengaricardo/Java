@@ -14,7 +14,7 @@ public class RollDieArray {
         // contador
         int[] frequency = {0, 0, 0, 0, 0, 0};
 
-        for (int roll = 1; roll <= 6000000; roll++) {
+        for (int roll = 1; roll <= 9000000; roll++) {
 
             int face = 1 + randomNumbers.nextInt(6);
 
@@ -22,8 +22,13 @@ public class RollDieArray {
 
         }
 
-        System.out.printf("%s%10s%n", "Face", "Frequency"); // cabeçalhos de saída
-        for (int face = 0; face < frequency.length; face++)
-            System.out.printf("%4d%10d%n", face + 1, frequency[face]);
+        System.out.printf("%s%10s%10s%n", "Face", "Frequency", "Stars"); // cabeçalhos de saída
+        for (int face = 0; face < frequency.length; face++) {
+            System.out.printf("%4d%10d ", face + 1, frequency[face]);
+            for (int stars = 1; stars <= frequency[face] / 100000; stars++) {
+                System.out.printf("*");
+            }
+            System.out.printf("%n");
+        }
     }
 }
