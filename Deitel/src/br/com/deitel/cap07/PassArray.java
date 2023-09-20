@@ -1,7 +1,6 @@
 // Passando arrays e elementos do arrays individuais aos métodos.
 
 package br.com.deitel.cap07;
-
 public class PassArray {
     public static void main(String[] args) {
         // cria array e chama métodos
@@ -30,6 +29,7 @@ public class PassArray {
         System.out.printf("array[3] after modifyInPosition: %d%n%n", array[3]);
 
         // saida do array modificado
+        System.out.printf("Final Array%n");
         for (int value : array)
             System.out.printf(" %d", value);
     }
