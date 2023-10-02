@@ -1,4 +1,4 @@
-# Anotações Java 1ZO-808
+﻿# Anotações Java 1ZO-808
 
 ### Comentários
 
@@ -37,6 +37,12 @@ public class Zoologico{
 }
 
 $ java Zoologico macaco girafa
+
+//-----
+// A ordem de public e static não interfere na execução de main().
+// Podendo ser:
+public static void main(String[] args){
+static public void main(String[] args){
 ~~~
 
 ##### varargs
@@ -79,9 +85,68 @@ public class Varargs {
     }
 }
 ~~~
+### Declaração e import de pacotes
+import - import pacotes da linguagens ou criados pelo dev
+package - define o pacote
 
+	import java.util.Random;
+	import java.util.*;
 
+#### imports redundantes
+	import java.lang 
 
+#### WildCards
+	// NO GOOD - A wildcard only matches
+	// class names, not "file.*Files"
+	import java.nio.*;
+	// NO GOOD - You can only hava one wildcard
+	// and it must be at the end
+	import java.nio.*.*;
+	// NO GOOD - You cannot import methods, only class names
+	import java.nio.files.Paths.*;
+	
 
+#### Conflitos de Nome
+Podem ocorrer conflitos de nomes entre classes, por exemplo:
+* Classe Date existe no pacote java.util e java.sql. É necessário definir no import.
+~~~ Java
+import java.util.*;
+import java.sql.*;
+public class Conflitos{
+	Date.data;
+}
+// existe ai uma ambiguidade - erro de compilação
+// no caso abaixo ocorre um warning:
+import java.util.Date;
+import java.sql.*;
 
+// abaixo ocorre erro de compilação:
+import java.util.Date;
+import java.sql.Date;
 
+// Solução: Definir explicitamente:
+import java.util.Date;
+import java.sql.Date;
+public class Conflitos{
+	java.util.Date.data;
+}
+~~~
+#### Criando novos pacotes
+~~~ Java
+package pacotea; // o pacote é uma pasta do SO
+                 // c:\temp\pacotea\ClasseA.java
+public class ClasseA {
+}
+-----------
+package pacoteb; //c:\temp\pacoteb\ClasseB.java
+import pacotea.ClasseA;
+public class ClasseB{
+	public static void main(String [] args){
+	}
+}
+~~~
+#### Compilando Pacotes Diferentes
+~~~ DOS
+javac packagea/ClasseA.java packageb/ClasseB.java
+java packageb.ClasseB
+~~~
