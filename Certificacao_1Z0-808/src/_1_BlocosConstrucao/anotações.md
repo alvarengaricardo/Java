@@ -2,7 +2,7 @@
 
 ### Comentários
 
-~~~java
+~~~ Java
 // comentário em uma única linha (single-line)
 
 /*
@@ -89,22 +89,27 @@ public class Varargs {
 import - import pacotes da linguagens ou criados pelo dev
 package - define o pacote
 
-	import java.util.Random;
-	import java.util.*;
+~~~ Java
+import java.util.Random;
+import java.util.*;
+~~~
 
 #### imports redundantes
-	import java.lang 
+~~~ Java
+import java.lang 
+~~~
 
 #### WildCards
-	// NO GOOD - A wildcard only matches
-	// class names, not "file.*Files"
-	import java.nio.*;
-	// NO GOOD - You can only hava one wildcard
-	// and it must be at the end
-	import java.nio.*.*;
-	// NO GOOD - You cannot import methods, only class names
-	import java.nio.files.Paths.*;
-	
+~~~ Java
+// NO GOOD - A wildcard only matches
+// class names, not "file.*Files"
+import java.nio.*;
+// NO GOOD - You can only hava one wildcard
+// and it must be at the end
+import java.nio.*.*;
+// NO GOOD - You cannot import methods, only class names
+import java.nio.files.Paths.*;
+~~~
 
 #### Conflitos de Nome
 Podem ocorrer conflitos de nomes entre classes, por exemplo:
