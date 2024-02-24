@@ -1,15 +1,14 @@
 package br.com.deitel.cap06.GUI;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class DrawSmiley extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
         // rosto
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.LIGHT_GRAY);
         g.fillOval(10, 10, 200, 200);
 
         // olhos
@@ -21,7 +20,7 @@ public class DrawSmiley extends JPanel {
         g.fillOval(50, 110, 120, 60);
 
         // sorriso
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.lightGray);
         g.fillRect(50, 110, 120, 30);
         g.fillOval(50, 120, 120, 40);
     }
