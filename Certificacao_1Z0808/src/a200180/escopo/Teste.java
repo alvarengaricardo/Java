@@ -11,9 +11,7 @@ variables because they are created and remain in memory for as long as the insta
 class exists. Instance variables store the state of the object. They are not within the
 scope of any particular method; Instead, they are in scope for the entire class. They
 exist and retain their value from the time a class is initialized until that class is
-either reinitialized or no longer referenced.
-
- */
+either reinitialized or no longer referenced. */
 
 
 class Teste {
@@ -45,9 +43,6 @@ class Teste {
         System.out.println(nome);
     }
 
-
-
-
     public static void main(String[] args) {
         Teste t = new Teste();
         t.m1();
@@ -63,6 +58,5 @@ class Teste {
         Teste.metodo();
         t.metodo();
         Teste.metodo();
-
     }
 }
