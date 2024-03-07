@@ -1,0 +1,78 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc} % Pacote para acentuação gráfica
+%\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel} % nomes das estruturas em pt-br
+%\usepackage{hyperref}
+\usepackage{indentfirst} % indenta primeiro paragráfo após título
+\usepackage{setspace} % pacote para alterar espaçamento entre linhas
+%\setlength{\parindent}{1cm} % define o tamanho da indentação
+%\setlength{\parskip}{0.3cm} % define o espaçamento vertical entre parágrafos
+
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+% Configurando layout para mostrar codigos Java
+\usepackage{listings}
+\lstset{
+	language=Java,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{jpurple}\bfseries,
+	stringstyle=\color{red},
+	commentstyle=\color{verde},
+	morecomment=[s][\color{blue}]{/**}{*/},
+	extendedchars=true,
+	showspaces=false,
+	showstringspaces=false,
+	numbers=left,
+	numberstyle=\tiny,
+	breaklines=true,
+	backgroundcolor=\color{cyan!10},
+	breakautoindent=true,
+	captionpos=b,
+	xleftmargin=0pt,
+	tabsize=4
+}
+\pagestyle{empty}
+\begin{document}
+\section*{Java Basics}
+\subsection*{Define the scope of variables}
+O escopo é o que determina em que pontos do código uma variável pode ser usada.
+\subsubsection*{Variáveis locais}
+Chamamos de locais as variáveis declaradas dentro de métodos ou construtores. Antes de continuar, vamos estabelecer uma regra básica: o ciclo de vida de uma variável local vai do ponto onde ela foi declarada até o fim do bloco onde ela foi declarada.
+
+Mas o que é um bloco? Podemos entender como bloco um trecho de código entre chaves. Pode ser um método, um construtor, o corpo de um \textbf{\textit{if}}, de um \textbf{\textit{for}} etc.:
+
+\begin{lstlisting}
+public void m1() { // início do bloco do método
+	int x = 10; // variável local do método
+	
+	if (x >= 10) { // início do bloco do if
+		int y = 50; // variável local do if
+		System.out.print(y);
+		
+	} // fim do bloco do if
+	
+} // fim do bloco do método
+\end{lstlisting}
+
+Analisando esse código, temos uma variável \textbf{\textit{x}}, que é declarada no começo do método. Ela pode ser utilizada durante todo o corpo do método. Dentro do \textbf{\textit{if}}, declaramos a variável \textbf{\textit{y}}. \textbf{\textit{y}} só pode ser utilizada dentro do corpo do \textbf{\textit{if}}, delimitado pelas chaves. Se tentarmos usar \textbf{\textit{y}} fora do corpo do \textbf{\textit{if}}, teremos um erro de compilação, pois a variável saiu do seu escopo.
+
+Tome cuidado especial com loops \textbf{\textit{for}}. As variáveis declaradas na área de inicialização do loop só podem ser usadas no corpo do loop:
+\pagebreak
+\begin{lstlisting}
+	
+	for (int i = 0, j = 0; i < 10; i++)
+	j++;
+	
+	System.out.println(j); // erro, já não está mais no escopo
+	
+\end{lstlisting}
+
+\subsection*{Define the structure of a Java class}
+\subsection*{Create executable Java applications with a main method; run a Java program from the command line; produce console output}
+\subsection*{Import other Java packages to make them accessible in your code}
+\subsection*{Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.}
+
+	
+\end{document}
