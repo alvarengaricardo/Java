@@ -7,6 +7,7 @@
 \usepackage{setspace} % pacote para alterar espaçamento entre linhas
 %\setlength{\parindent}{1cm} % define o tamanho da indentação
 %\setlength{\parskip}{0.3cm} % define o espaçamento vertical entre parágrafos
+\usepackage[top = 2cm, left = 2cm, bottom = 2cm, right = 2cm]{geometry} % define as margens do documento
 
 \usepackage{xcolor}
 % Definindo novas cores
@@ -44,30 +45,148 @@ Chamamos de locais as variáveis declaradas dentro de métodos ou construtores. 
 Mas o que é um bloco? Podemos entender como bloco um trecho de código entre chaves. Pode ser um método, um construtor, o corpo de um \textbf{\textit{if}}, de um \textbf{\textit{for}} etc.:
 
 \begin{lstlisting}
-public void m1() { // início do bloco do método
-	int x = 10; // variável local do método
+public void m1() { // inicio do bloco do metodo
+	int x = 10; // variavel local do metodo
 	
-	if (x >= 10) { // início do bloco do if
-		int y = 50; // variável local do if
+	if (x >= 10) { // inicio do bloco do if
+		int y = 50; // variavel local do if
 		System.out.print(y);
-		
 	} // fim do bloco do if
-	
-} // fim do bloco do método
+} // fim do bloco do metodo
 \end{lstlisting}
 
 Analisando esse código, temos uma variável \textbf{\textit{x}}, que é declarada no começo do método. Ela pode ser utilizada durante todo o corpo do método. Dentro do \textbf{\textit{if}}, declaramos a variável \textbf{\textit{y}}. \textbf{\textit{y}} só pode ser utilizada dentro do corpo do \textbf{\textit{if}}, delimitado pelas chaves. Se tentarmos usar \textbf{\textit{y}} fora do corpo do \textbf{\textit{if}}, teremos um erro de compilação, pois a variável saiu do seu escopo.
 
 Tome cuidado especial com loops \textbf{\textit{for}}. As variáveis declaradas na área de inicialização do loop só podem ser usadas no corpo do loop:
-\pagebreak
+
 \begin{lstlisting}
-	
 	for (int i = 0, j = 0; i < 10; i++)
 	j++;
-	
-	System.out.println(j); // erro, já não está mais no escopo
-	
+
+	System.out.println(j); // erro, ja nao esta mais no escopo
 \end{lstlisting}
+
+Parâmetros de métodos também podem ser considerados variáveis locais ao método, ou seja, só podem ser usados dentro do método onde foram declarados:
+
+\begin{lstlisting}
+class Teste {
+	
+	public void m1(String bla) {
+		System.out.print(bla);
+	}
+	
+	public void m2() {
+		// erro de compilacao pois bla nao existe neste
+		// escopo
+		System.out.println(bla);
+	}
+}
+\end{lstlisting}
+
+\subsubsection*{Variáveis de instância}
+
+Variáveis de instância ou variáveis de objeto são os atributos dos objetos. São declaradas dentro da classe, mas fora de qualquer método ou construtor. Podem ser acessadas por qualquer membro da classe e ficam em escopo enquanto o objeto existir:
+
+\begin{lstlisting}
+	class Pessoa {
+		// variavel de instancia ou variavel de objeto
+		String nome;
+		
+		public void setNome(String n) {
+			// acessando a variavel de instancia no metodo
+			this.nome = n;
+		}
+	}
+\end{lstlisting}
+
+\subsubsection*{Variáveis estáticas (class variables)}
+
+Podemos declarar variáveis que são compartilhadas por todas as instâncias de uma classe usando a palavra chave \textbf{\textit{static}}. Essas variáveis estão no escopo da classe, e lá ficarão enquanto a classe estiver carregada na memória (enquanto o programa estiver rodando, na grande maioria dos casos).
+
+\begin{lstlisting}
+	class Pessoa {
+		static int id = 1;
+	}
+	
+	class Teste {
+		public static void main(String[] args) {
+			Pessoa p = new Pessoa();
+			System.out.println(p.id); // acessando pelo objeto
+			System.out.println(Pessoa.id); // acessando direto pela
+			// classe
+		}
+	}
+\end{lstlisting}
+
+No caso de variáveis \textbf{\textit{static}}, não precisamos ter uma referência para usá-las e podemos acessá-las diretamente a partir da classe, desde que respeitando as regras de visibilidade da variável.
+
+\subsubsection*{Variáveis com o mesmo nome}
+
+Logicamente, não é possível declarar duas variáveis no mesmo escopo com o mesmo nome:
+
+\begin{lstlisting}
+	public void bla() {
+		int a = 0;
+		int a = 10;// erro
+	}
+\end{lstlisting}
+
+Mas, eventualmente, podemos ter variáveis em escopos diferentes que podem ser declaradas com o mesmo nome. Em casos em que possa haver ambiguidade na hora de declará-las, o próprio compilador irá emitir um erro evitando a confusão. Por exemplo, não podemos declarar variáveis de classe e de instância com o mesmo nome:
+
+\begin{lstlisting}
+	class Bla {
+		static int a;
+		int a; // erro de compilacao,
+	}
+	...
+	System.out.println(new Bla().a); // qual variavel estamos
+	// acessando?
+\end{lstlisting}
+
+Também não podemos declarar variáveis locais com o mesmo nome de parâmetros:
+
+\begin{lstlisting}
+	public void metodo(String par) {
+		int par = 0; // erro de compilacao
+		
+		System.out.println(par); // qual?
+	}
+\end{lstlisting}
+
+Apesar de parecer estranho, é permitido declarar variáveis locais ou parâmetros com o mesmo nome de variáveis de instância ou de classe. Essa técnica é chamada de \textit{shadowing}. Nesses casos, é possível resolver a ambiguidade: para variáveis de classe, podemos referenciar pela própria classe; para variáveis de instância, usamos a palavra chave \textbf{\textit{this}}:
+
+\begin{lstlisting}
+class Pessoa {
+	
+	static int x = 0;
+	int y = 0;
+	
+	public static void setX(int x) {
+		// Usando a referencia da classe
+		Pessoa.x = x;
+	}
+	
+	public void setY(int y) {
+		// usando o this
+		this.y = y;
+	}
+}
+\end{lstlisting}
+
+Quando não usamos o \textbf{\textit{this}} ou o nome da classe para usar a variável, o compilador sempre utilizará a variável de menor escopo:
+
+\begin{lstlisting}
+class X {
+	int a = 10;
+	
+	public void metodo() {
+		int a = 20; // shadowing
+		System.out.println(a); // imprime 20
+	}
+}
+\end{lstlisting}
+
+
 
 \subsection*{Define the structure of a Java class}
 \subsection*{Create executable Java applications with a main method; run a Java program from the command line; produce console output}
