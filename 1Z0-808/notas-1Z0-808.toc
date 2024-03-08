@@ -1,0 +1,17 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {section}{\numberline {1}Java Basics}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Define the scope of variables}{1}{}%
+\contentsline {subsubsection}{\numberline {1.1.1}Variáveis locais}{1}{}%
+\contentsline {subsubsection}{\numberline {1.1.2}Variáveis de instância}{2}{}%
+\contentsline {subsubsection}{\numberline {1.1.3}Variáveis estáticas (class variables)}{2}{}%
+\contentsline {subsubsection}{\numberline {1.1.4}Variáveis com o mesmo nome}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Define the structure of a Java class}{4}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Pacotes}{4}{}%
+\contentsline {subsubsection}{\numberline {1.2.2}Classe}{5}{}%
+\contentsline {subsubsection}{\numberline {1.2.3}Variáveis}{5}{}%
+\contentsline {subsubsection}{\numberline {1.2.4}Métodos}{6}{}%
+\contentsline {subsubsection}{\numberline {1.2.5}Construtores}{6}{}%
+\contentsline {subsubsection}{\numberline {1.2.6}Métodos com o mesmo nome da classe}{6}{}%
+\contentsline {subsubsection}{\numberline {1.2.7}Interfaces}{6}{}%
+\contentsline {subsubsection}{\numberline {1.2.8}Múltiplas estruturas em um arquivo}{7}{}%
+\contentsline {subsubsection}{\numberline {1.2.9}Pacotes e imports em arquivos com múltiplas estruturas}{7}{}%
