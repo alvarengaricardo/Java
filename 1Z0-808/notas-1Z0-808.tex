@@ -10,6 +10,8 @@
 \usepackage[top = 2cm, left = 2cm, bottom = 2cm, right = 2cm]{geometry} % define as margens do documento
 \usepackage{fancyhdr} % pacote para numeração de páginas
 \usepackage{hyperref}
+\usepackage[table,xcdraw]{xcolor} % tabela colorida
+\usepackage{float} % força posição de tabelas e figuras
 
 \usepackage{xcolor}
 % Definindo novas cores
@@ -93,9 +95,11 @@ O escopo é o que determina em que pontos do código uma variável pode ser usad
 
 \subsubsection{Variáveis locais}
 
-Chamamos de locais as variáveis declaradas dentro de métodos ou construtores. Antes de continuar, vamos estabelecer uma regra básica: o ciclo de vida de uma variável local vai do ponto onde ela foi declarada até o fim do bloco onde ela foi declarada.
+Chamamos de locais as variáveis declaradas dentro de métodos ou construtores. Antes de continuar, vamos estabelecer uma regra básica: o ciclo de vida de uma variável local vai do ponto onde ela foi declarada até o fim do daquele bloco.
 
-Mas o que é um bloco? Podemos entender como bloco um trecho de código entre chaves. Pode ser um método, um construtor, o corpo de um \textbf{\textit{if}}, de um \textbf{\textit{for}} etc.:
+Quando uma variável sai do escopo ela não pode mais ser usada e seu valor é perdido. A qualquer momento o JVM pode realocar a memória ocupada por ela.
+
+Mas o que é um bloco? Podemos entender como bloco um trecho de código entre chaves \textbf{\textit{{}}}. Pode ser um método, um construtor, o corpo de um \textbf{\textit{if}}, de um \textbf{\textit{for}} etc.:
 
 \begin{lstlisting}
 public void m1() { // inicio do bloco do metodo
@@ -113,10 +117,10 @@ Analisando esse código, temos uma variável \textbf{\textit{x}}, que é declara
 Tome cuidado especial com loops \textbf{\textit{for}}. As variáveis declaradas na área de inicialização do loop só podem ser usadas no corpo do loop:
 
 \begin{lstlisting}
-	for (int i = 0, j = 0; i < 10; i++)
-	j++;
+for (int i = 0, j = 0; i < 10; i++)
+j++;
 
-	System.out.println(j); // erro, ja nao esta mais no escopo
+System.out.println(j); // erro, ja nao esta mais no escopo
 \end{lstlisting}
 
 Parâmetros de métodos também podem ser considerados variáveis locais ao método, ou seja, só podem ser usados dentro do método onde foram declarados:
@@ -136,20 +140,28 @@ class Teste {
 }
 \end{lstlisting}
 
+Os parâmetros podem ser primitivos ou objetos. Um método pode ter até 255 parâmetros. Essas variáveis fazem parte do escopo do bloco do método inteiro e são definidas na declaração do método.
+\begin{lstlisting}
+float findMilesPerHour(float milesTraveled, float hoursTraveled){
+	//o metodo contem dois parametros
+	return milesTraveled / hoursTraveled;
+}
+\end{lstlisting}
+
 \subsubsection{Variáveis de instância}
 
-Variáveis de instância ou variáveis de objeto são os atributos dos objetos. São declaradas dentro da classe, mas fora de qualquer método ou construtor. Podem ser acessadas por qualquer membro da classe e ficam em escopo enquanto o objeto existir:
+Variáveis de instância ou variáveis de objeto são os atributos dos objetos. São declaradas dentro da classe, mas fora de qualquer método ou construtor. Fazem parte do escopo da classe. Podem ser acessadas por qualquer membro da classe e ficam em escopo enquanto o objeto existir:
 
 \begin{lstlisting}
-	class Pessoa {
-		// variavel de instancia ou variavel de objeto
-		String nome;
-		
-		public void setNome(String n) {
-			// acessando a variavel de instancia no metodo
-			this.nome = n;
-		}
+class Pessoa {
+	// variavel de instancia ou variavel de objeto
+	String nome;
+	
+	public void setNome(String n) {
+		// acessando a variavel de instancia no metodo
+		this.nome = n;
 	}
+}
 \end{lstlisting}
 
 \subsubsection{Variáveis estáticas (class variables)}
@@ -157,18 +169,20 @@ Variáveis de instância ou variáveis de objeto são os atributos dos objetos. 
 Podemos declarar variáveis que são compartilhadas por todas as instâncias de uma classe usando a palavra chave \textbf{\textit{static}}. Essas variáveis estão no escopo da classe, e lá ficarão enquanto a classe estiver carregada na memória (enquanto o programa estiver rodando, na grande maioria dos casos).
 
 \begin{lstlisting}
-	class Pessoa {
-		static int id = 1;
-	}
+class Pessoa {
+	static int id = 1;
+}
 	
-	class Teste {
-		public static void main(String[] args) {
-			Pessoa p = new Pessoa();
-			System.out.println(p.id); // acessando pelo objeto
-			System.out.println(Pessoa.id); // acessando direto pela
-			// classe
-		}
+class Teste {
+	public static void main(String[] args) {
+		Pessoa p = new Pessoa();
+		System.out.println(p.id); // acessando pelo objeto
+		System.out.println(Pessoa.id); // acessando direto pela
+		p.id ++;
+		System.out.println(Pessoa.id); // acessando direto pela
+		// classe
 	}
+}
 \end{lstlisting}
 
 No caso de variáveis \textbf{\textit{static}}, não precisamos ter uma referência para usá-las e podemos acessá-las diretamente a partir da classe, desde que respeitando as regras de visibilidade da variável.
@@ -178,35 +192,33 @@ No caso de variáveis \textbf{\textit{static}}, não precisamos ter uma referên
 Logicamente, não é possível declarar duas variáveis no mesmo escopo com o mesmo nome:
 
 \begin{lstlisting}
-	public void bla() {
-		int a = 0;
-		int a = 10;// erro
-	}
+public void bla() {
+	int a = 0;
+	int a = 10;// erro
+}
 \end{lstlisting}
 
 Mas, eventualmente, podemos ter variáveis em escopos diferentes que podem ser declaradas com o mesmo nome. Em casos em que possa haver ambiguidade na hora de declará-las, o próprio compilador irá emitir um erro evitando a confusão.
-\pagebreak
 
 Por exemplo, não podemos declarar variáveis de classe e de instância com o mesmo nome:
 
 \begin{lstlisting}
-	class Bla {
-		static int a;
-		int a; // erro de compilacao,
-	}
-	...
-	System.out.println(new Bla().a); // qual variavel estamos
-	// acessando?
+class Bla {
+	static int a;
+	int a; // erro de compilacao,
+}
+...
+System.out.println(new Bla().a); // qual variavel estamos acessando?
 \end{lstlisting}
 
 Também não podemos declarar variáveis locais com o mesmo nome de parâmetros:
 
 \begin{lstlisting}
-	public void metodo(String par) {
-		int par = 0; // erro de compilacao
-		
-		System.out.println(par); // qual?
-	}
+public void metodo(String par) {
+	int par = 0; // erro de compilacao
+	
+	System.out.println(par); // qual?
+}
 \end{lstlisting}
 
 Apesar de parecer estranho, é permitido declarar variáveis locais ou parâmetros com o mesmo nome de variáveis de instância ou de classe. Essa técnica é chamada de \textit{shadowing}. Nesses casos, é possível resolver a ambiguidade: para variáveis de classe, podemos referenciar pela própria classe; para variáveis de instância, usamos a palavra chave \textbf{\textit{this}}:
@@ -228,7 +240,7 @@ class Pessoa {
 	}
 }
 \end{lstlisting}
-
+\pagebreak
 Quando não usamos o \textbf{\textit{this}} ou o nome da classe para usar a variável, o compilador sempre utilizará a variável de menor escopo:
 
 \begin{lstlisting}
@@ -242,6 +254,26 @@ class X {
 }
 \end{lstlisting}
 
+\subsubsection{Difference Between Life and Scope For Local Variables}
+
+\textbf{Life:} A local variable is \textit{alive} as long as its Stack frame is on the Stack. In other words, \textit{until the method completes}.
+
+\textbf{Scope:} A local variable is in \textit{scope} only within the method in which the variable was declared. When its own method calls another, the variable is alive, but not in scope until its method resumes. \textbf{You can use a variable only when it is in scope}.
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+\begin{table}[H]
+	\begin{tabular}{|ll|}
+		\hline
+		\multicolumn{2}{|c|}{\cellcolor[HTML]{34FF34}\textit{\textbf{Cenário e Solução}}}                                        \\ \hline
+		\multicolumn{1}{|l|}{Variável mais adequada para um contador em um laço?}                        & Variável local        \\ \hline
+		\multicolumn{1}{|l|}{Variável deve ser usada para armazenar informações sobre um objeto?}        & Variável de instância \\ \hline
+		\multicolumn{1}{|l|}{Que variável deve ser usada para a passagem de informações para um método?} & Parâmetro de método   \\ \hline
+	\end{tabular}
+\end{table}
+
 \subsection{Define the structure of a Java class}
 
 Nesta seção, iremos entender a estrutura de um arquivo java, onde inserir as declarações de pacotes e imports e como declarar classes e interfaces.
@@ -249,16 +281,16 @@ Nesta seção, iremos entender a estrutura de um arquivo java, onde inserir as d
 Para entender a estrutura de uma classe, vamos ver o arquivo \textbf{\textit{Pessoa.java}}:
 
 \begin{lstlisting}
-	// Declaracao de pacote
-	package br.com.caelum.certificacao;
+// Declaracao de pacote
+package br.com.caelum.certificacao;
 	
-	// imports
-	import java.util.Date;
+// imports
+import java.util.Date;
 	
-	// Declaracao da classe
-	class Pessoa {
-		// conteudo da classe
-	}
+// Declaracao da classe
+class Pessoa {
+	// conteudo da classe
+}
 \end{lstlisting}
 
 \subsubsection{Pacotes}
@@ -275,12 +307,12 @@ class Pessoa {
 Para definir qual o pacote a que a classe pertence, usamos a palavra-chave \textbf{\textit{package}}, seguida do nome do pacote. Só pode existir um único \textbf{\textit{package}} definido por arquivo, e ele deve ser a primeira instrução do arquivo. Após a definição do \textbf{\textit{package}}, devemos finalizar a instrução com um \textbf{\textit{;}}. Podem existir comentários antes da definição de um pacote:
 
 \begin{lstlisting}
-	// declaracao do pacote
-	package br.com.caelum.certificacao;
+// declaracao do pacote
+package br.com.caelum.certificacao;
 	
-	class Pessoa {
-		//...
-	}
+class Pessoa {
+	//...
+}
 \end{lstlisting}
 
 Aproveitando que tocamos no assunto, o \textbf{\textit{package}} deve ser a primeira instrução de código que temos declarada em nosso arquivo. Comentários não são considerados parte do código, portanto, podem existir em qualquer lugar do arquivo java sem restrições.
@@ -289,21 +321,21 @@ Aproveitando que tocamos no assunto, o \textbf{\textit{package}} deve ser a prim
 Para inserir comentário em nosso código, temos as seguintes formas:
 
 \begin{lstlisting}
-	// comentario de linha
+// comentario de linha
+
+/*
+comentario de
+multiplas linhas
+*/
+class /* comentario no meio da linha */ Pessoa {
 	
-	/*
-	comentario de
-	multiplas linhas
+	/**
+	*  JavaDoc, repare que a primeira linha do comentario tem
+	*  2 asteriscos
 	*/
-	class /* comentario no meio da linha */ Pessoa {
-		
-		/**
-		*  JavaDoc, repare que a primeira linha do comentario tem
-		*  2 asteriscos
-		*/
-		public void metodo() {
-		}
+	public void metodo() {
 	}
+}
 \end{lstlisting}
 
 \subsubsection{Classe}
@@ -321,20 +353,20 @@ Vale lembrar que java é case \textit{sensitive} e \textbf{\textit{Class}} é o 
 Dentro de uma classe, podemos ter variáveis, métodos e construtores. Essas estruturas são chamadas de \underline{\textbf{membros da classe}}.:
 
 \begin{lstlisting}
-	class Pessoa {
-		
-		String nome;
-		String sobrenome;
-		
-		Pessoa(String nome, String sobrenome) {
-			this.nome = nome;
-			this.sobrenome = sobrenome;
-		}
-		
-		public String getNomeCompleto() {
-			return this.nome + this.sobrenome;
-		}
-	}	
+class Pessoa {
+	
+	String nome;
+	String sobrenome;
+	
+	Pessoa(String nome, String sobrenome) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+	}
+	
+	public String getNomeCompleto() {
+		return this.nome + this.sobrenome;
+	}
+}	
 \end{lstlisting}
 
 \subsubsection{Variáveis}
@@ -378,12 +410,12 @@ Caso o valor seja maior que \textbf{\textit{1}}, o valor de \textbf{\textit{j}} 
 Além de classes, também podemos declarar \textit{interfaces} em nossos arquivos java. Para definir uma interface usamos a palavra reservada \textbf{\textit{interface}}:
 
 \begin{lstlisting}
-	interface Autenticavel {
-		
-		final int TAMANHO_SENHA = 8;
-		
-		void autentica(String login, String senha);
-	}
+interface Autenticavel {
+	
+	final int TAMANHO_SENHA = 8;
+	
+	void autentica(String login, String senha);
+}
 \end{lstlisting}
 
 Em uma interface, devemos apenas definir a assinatura do método, sem a sua implementação. Além da assinatura de métodos, também é possível declarar constantes em interfaces.
@@ -402,18 +434,18 @@ Em java, é possível definir mais de uma classe/interface em um mesmo arquivo j
 Logo, são válidos:
 
 \begin{lstlisting}
-	// arquivo1.java
-	interface Bar {}
-	
-	class Foo {}
+// arquivo1.java
+interface Bar {}
+
+class Foo {}
 \end{lstlisting}
 
 
 \begin{lstlisting}
-	// Foo.java
-	public class Foo {}
-	
-	interface X {}
+// Foo.java
+public class Foo {}
+
+interface X {}
 \end{lstlisting}
 
 \subsubsection{Pacotes e imports em arquivos com múltiplas estruturas}
