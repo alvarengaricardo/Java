@@ -12,5 +12,10 @@ class Teste2 {
         p.id ++;
         System.out.println(Pessoa.id); // acessando direto pela
         // classe
+        p.id ++;
+        Pessoa pp = new Pessoa();
+        p.id ++;
+        System.out.println(pp.id);
+        System.out.println(Pessoa.id);
     }
 }
