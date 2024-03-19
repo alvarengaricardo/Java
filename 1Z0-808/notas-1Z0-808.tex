@@ -99,11 +99,13 @@ O escopo é o que determina em que pontos do código uma variável pode ser usad
 
 \subsubsection{Variáveis locais}
 
-Chamamos de locais as variáveis declaradas dentro de métodos ou construtores. Antes de continuar, vamos estabelecer uma regra básica: o ciclo de vida de uma variável local vai do ponto onde ela foi declarada até o fim do daquele bloco.
+Variáveis locais são declaradas dentro de métodos ou construtores. O ciclo de vida de uma variável local vai do ponto onde ela foi declarada até o fim do daquele bloco.
 
-Quando uma variável sai do escopo ela não pode mais ser usada e seu valor é perdido. A qualquer momento o JVM pode realocar a memória ocupada por ela.
+Quando a execução sai do escopo a variável não pode mais ser usada e seu valor é perdido. A qualquer momento o JVM pode realocar a memória ocupada por ela.
 
-Mas o que é um bloco? Podemos entender como bloco um trecho de código entre chaves \textbf{\textit{{}}}. Pode ser um método, um construtor, o corpo de um \textbf{\textit{if}}, de um \textbf{\textit{for}} etc.:
+Bloco é um trecho de código entre chaves \textbf{\textit{{}}}. Pode ser um método, um construtor, o corpo de um \textbf{\textit{if}}, de um \textbf{\textit{for}} etc.
+
+Analise o código abaixo e identifique os escopos de \textbf{\textit{x}} e \textbf{\textit{y}}:
 
 \begin{lstlisting}
 public void m1() { // inicio do bloco do metodo
@@ -116,13 +118,12 @@ public void m1() { // inicio do bloco do metodo
 } // fim do bloco do metodo
 \end{lstlisting}
 
-Analisando esse código, temos uma variável \textbf{\textit{x}}, que é declarada no começo do método. Ela pode ser utilizada durante todo o corpo do método. Dentro do \textbf{\textit{if}}, declaramos a variável \textbf{\textit{y}}. \textbf{\textit{y}} só pode ser utilizada dentro do corpo do \textbf{\textit{if}}, delimitado pelas chaves. Se tentarmos usar \textbf{\textit{y}} fora do corpo do \textbf{\textit{if}}, teremos um erro de compilação, pois a variável saiu do seu escopo.
+
 
 Tome cuidado especial com loops \textbf{\textit{for}}. As variáveis declaradas na área de inicialização do loop só podem ser usadas no corpo do loop:
 
 \begin{lstlisting}
-for (int i = 0, j = 0; i < 10; i++)
-j++;
+for (int i = 0, j = 0; i < 10; i++) j++;
 
 System.out.println(j); // erro, ja nao esta mais no escopo
 \end{lstlisting}
@@ -145,6 +146,8 @@ class Teste {
 \end{lstlisting}
 
 Os parâmetros podem ser primitivos ou objetos. Um método pode ter até 255 parâmetros. Essas variáveis fazem parte do escopo do bloco do método inteiro e são definidas na declaração do método.
+\pagebreak
+
 \begin{lstlisting}
 float findMilesPerHour(float milesTraveled, float hoursTraveled){
 	//o metodo contem dois parametros
@@ -198,7 +201,7 @@ No caso de variáveis \textbf{\textit{static}}, não precisamos ter uma referên
 
 \subsubsection{Variáveis com o mesmo nome}
 
-Logicamente, não é possível declarar duas variáveis no mesmo escopo com o mesmo nome:
+Não é possível declarar duas variáveis no mesmo escopo com o mesmo nome:
 
 \begin{lstlisting}
 public void bla() {
@@ -304,7 +307,7 @@ class Pessoa {
 
 \subsubsection{Pacotes}
 
-Pacotes servem para separar e organizar as diversas classes que temos em nossos sistemas. Todas as classes pertencem a um pacote, sendo que, caso o pacote não seja explicitamente declarado, a classe fará parte do que chamamos de pacote padrão, ou \textbf{\textit{default package}}. Todas as classes no \textbf{\textit{default package}} se enxergam e podem ser utilizadas entre si. Classes no pacote \textbf{\textit{default}} não podem ser importadas para uso em outros pacotes:
+Pacotes servem para separar e organizar as diversas classes que temos em nossos sistemas. Todas as classes pertencem a um pacote, sendo que, caso o pacote não seja explicitamente declarado, a classe fará parte do que chamamos de pacote padrão, ou \textbf{\textit{default package}}. Todas as classes no \textbf{\textit{default package}} se enxergam e podem ser utilizadas entre si. Classes no pacote \textbf{\textit{default}} \textbf{\textit{NÃO}} \textbf{podem ser importadas para uso em outros pacotes}.
 
 \begin{lstlisting}
 // Uma classe no pacote padrao
@@ -313,7 +316,7 @@ class Pessoa {
 }
 \end{lstlisting}
 
-Para definir qual o pacote a que a classe pertence, usamos a palavra-chave \textbf{\textit{package}}, seguida do nome do pacote. Só pode existir um único \textbf{\textit{package}} definido por arquivo, e ele deve ser a primeira instrução do arquivo. Após a definição do \textbf{\textit{package}}, devemos finalizar a instrução com um \textbf{\textit{;}}. Podem existir comentários antes da definição de um pacote:
+Para definir qual o pacote a que a classe pertence, usamos a palavra-chave \textbf{\textit{package}}, seguida do nome do pacote. \textbf{Só pode existir um único \textbf{\textit{package}} definido por arquivo, e ele deve ser a primeira instrução do arquivo.} Após a definição do \textbf{\textit{package}}, devemos finalizar a instrução com um \textbf{\textit{;}}. \textbf{Podem existir comentários antes da definição de um pacote}:
 
 \begin{lstlisting}
 // declaracao do pacote
@@ -324,7 +327,7 @@ class Pessoa {
 }
 \end{lstlisting}
 
-\textbf{\textit{Package}} deve ser a primeira instrução de código que temos declarada em nosso arquivo. Comentários não são considerados parte do código, portanto, podem existir em qualquer lugar do arquivo java sem restrições.
+\textbf{\textit{Package}} deve ser a primeira instrução de código que temos declarada em nosso arquivo. Comentários não são considerados parte do código, portanto, podem existir em qualquer lugar do arquivo Java sem restrições.
 
 Formas para inserir comentários:
 
@@ -348,7 +351,7 @@ class /* comentario no meio da linha */ Pessoa {
 
 \subsubsection{Classe}
 
-Uma classe é a forma no Java onde definimos os atributos e comportamentos de um objeto. A declaração de uma classe pode ser bem simples, apenas a palavra \textbf{\textit{class}} seguida do nome e de \textbf{\textit{{}}}:
+Uma classe é a forma no Java onde definimos os atributos e comportamentos de um objeto. A declaração de uma classe pode ser bem simples, apenas a palavra \textbf{\textit{class}} seguida do nome e de \textbf{\textit{\{\}}}:
 
 \begin{lstlisting}
 class Pessoa {}
@@ -357,8 +360,9 @@ class Pessoa {}
 Existem outros modificadores que podem ser usados na definição de uma classe, mas veremos essas outras opções mais à frente, onde discutiremos esses modificadores com mais detalhes.
 
 Vale lembrar que java é case \textit{sensitive} e \textbf{\textit{Class}} é o nome de uma classe e não podemos usá-lo para definir uma nova classe.
+\pagebreak
 
-Dentro de uma classe, podemos ter variáveis, métodos e construtores. Essas estruturas são chamadas de \underline{\textbf{membros da classe}}.:
+Dentro de uma classe, podemos ter variáveis, métodos e construtores. Essas estruturas são chamadas de \textbf{membros da classe}.:
 
 \begin{lstlisting}
 class Pessoa {
@@ -390,21 +394,19 @@ In Java, everything goes in a class. You’ll type your source code file (with a
 
 \subsubsection{Variáveis}
 
-Usando como exemplo a classe Pessoa definida anteriormente, nome e sobrenome são variáveis. A declaração de variáveis é bem simples, sempre o tipo seguido do nome da variável.
+No exemplo da classe Pessoa definida anteriormente, \textit{nome} e \textit{sobrenome} são \textbf{variáveis}. A declaração de variáveis: \textit{tipo} \textit{\underline{nome\_da\_variável;}}.
 
-Dizemos que essas são variáveis de instância, pois existe uma cópia delas para cada objeto Pessoa criado em nosso programa. Cada cópia guarda o estado de uma certa instância desses objetos.
+Essas são variáveis de instância, pois existe uma cópia delas para cada objeto \textit{Pessoa} criado. Cada cópia guarda o estado de uma certa instância desses objetos.
 
-Existem ainda variáveis que não guardam valores ou referências para uma determinada instância, mas sim um valor compartilhado por todas as instâncias de objetos. Essas são variáveis estáticas, definidas com a palavra-chave \textbf{\textit{static}}. Veremos mais sobre esse tipo de membro mais à frente.
+Há variáveis que não guardam valores ou referências para uma determinada instância, mas sim um valor compartilhado por todas as instâncias de objetos. Essas são variáveis estáticas, definidas com a palavra-chave \textbf{\textit{static}}.
 
 \subsubsection{Métodos}
 
-A declaração de métodos é um pouquinho diferente pois precisamos do tipo do retorno, seguido do nome do método e seguido de parênteses, sendo que pode ou não haver parâmetros de entrada desse método. Cada parâmetro é uma declaração de variável em si. Essa linha do método, onde está definido o retorno, o nome e os parâmetros é onde temos a assinatura do método. Cuidado, pois a assinatura de um método inclui somente o nome do método e os tipos dos parâmetros.
-
-Assim como variáveis, métodos também podem ser \textbf{\textit{static}}, como veremos mais adiante.
+Na declaração de métodos precisamos do tipo do retorno, seguido do nome do método e seguido de parênteses, sendo que pode ou não haver parâmetros de entrada desse método. Cada parâmetro é uma declaração de variável em si. Essa linha do método, onde está definido o retorno, o nome e os parâmetros é onde temos a assinatura do método. \textbf{\textit{A assinatura de um método inclui somente o nome do método e os tipos dos parâmetros}}. Métodos também podem ser \textbf{\textit{static}}.
 
 \subsubsection{Construtores}
 
-Uma classe pode possuir zero ou vários construtores. Nossa classe Pessoa possui um construtor que recebe como parâmetros o nome e o sobrenome da pessoa. A principal diferença entre a declaração de um método e um construtor é que um construtor não tem retorno e possui o mesmo nome da classe.
+\textbf{Uma classe pode possuir zero ou vários construtores}. A classe \textit{Pessoa} possui um construtor que recebe como parâmetros o nome e o sobrenome da pessoa. A principal diferença entre a declaração de um método e um construtor é que \textbf{um construtor não tem retorno e possui o mesmo nome da classe}.
 
 \subsubsection{Métodos com o mesmo nome da classe}
 
@@ -426,7 +428,7 @@ Caso o valor seja maior que \textbf{\textit{1}}, o valor de \textbf{\textit{j}} 
 
 \subsubsection{Interfaces}
 
-Além de classes, também podemos declarar \textit{interfaces} em nossos arquivos java. Para definir uma interface usamos a palavra reservada \textbf{\textit{interface}}:
+Para definir uma interface usamos a palavra reservada \textbf{\textit{interface}}:
 
 \begin{lstlisting}
 interface Autenticavel {
@@ -443,14 +445,12 @@ Em uma interface, devemos apenas definir a assinatura do método, sem a sua impl
 
 Em java, é possível definir mais de uma classe/interface em um mesmo arquivo java, embora devamos seguir algumas regras:
 
-\begin{enumerate}
+\begin{itemize}
 	\item Podem ser definidos em qualquer ordem;
 	\item Se existir alguma classe/interface pública, o nome do arquivo deve ser o mesmo dessa classe/interface;
 	\item Só pode existir uma classe/interface pública por arquivo;
 	\item Se não houver nenhuma classe/interface pública, o arquivo pode ter qualquer nome.
-\end{enumerate}
-
-Logo, são válidos:
+\end{itemize}
 
 \begin{lstlisting}
 // arquivo1.java
@@ -470,6 +470,23 @@ interface X {}
 \subsubsection{Pacotes e imports em arquivos com múltiplas estruturas}
 
 As regras de pacotes e \textbf{\textit{imports}} valem também para arquivos com múltiplas estruturas definidas. Caso exista a definição de um pacote, ela vale para todas as classes/interfaces definidas nesse arquivo, e o mesmo vale para \textbf{\textit{imports}}.
+
+\subsubsection{Convenções de nomenclatura}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figuras/nomenclatura}
+	\caption[Nomenclatura Java]{Nomenclatura Java}
+	\label{fig:nomenclatura}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figuras/símbolos_e_separadores}
+	\caption[Símbolos e separadores]{Símbolos e separadores}
+	\label{fig:simboloseseparadores}
+\end{figure}
+
 
 \subsection*{Create executable Java applications with a main method; run a Java program from the command line; produce console output}
 

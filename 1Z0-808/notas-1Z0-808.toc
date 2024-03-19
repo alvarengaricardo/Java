@@ -9,10 +9,11 @@
 \contentsline {subsection}{\numberline {1.2}Define the structure of a Java class}{4}{subsection.1.2}%
 \contentsline {subsubsection}{\numberline {1.2.1}Pacotes}{4}{subsubsection.1.2.1}%
 \contentsline {subsubsection}{\numberline {1.2.2}Classe}{5}{subsubsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Variáveis}{6}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.3}Variáveis}{7}{subsubsection.1.2.3}%
 \contentsline {subsubsection}{\numberline {1.2.4}Métodos}{7}{subsubsection.1.2.4}%
 \contentsline {subsubsection}{\numberline {1.2.5}Construtores}{7}{subsubsection.1.2.5}%
 \contentsline {subsubsection}{\numberline {1.2.6}Métodos com o mesmo nome da classe}{7}{subsubsection.1.2.6}%
 \contentsline {subsubsection}{\numberline {1.2.7}Interfaces}{7}{subsubsection.1.2.7}%
 \contentsline {subsubsection}{\numberline {1.2.8}Múltiplas estruturas em um arquivo}{8}{subsubsection.1.2.8}%
 \contentsline {subsubsection}{\numberline {1.2.9}Pacotes e imports em arquivos com múltiplas estruturas}{8}{subsubsection.1.2.9}%
+\contentsline {subsubsection}{\numberline {1.2.10}Convenções de nomenclatura}{9}{subsubsection.1.2.10}%
