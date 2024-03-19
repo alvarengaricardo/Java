@@ -17,3 +17,19 @@
 \contentsline {subsubsection}{\numberline {1.2.8}Múltiplas estruturas em um arquivo}{8}{subsubsection.1.2.8}%
 \contentsline {subsubsection}{\numberline {1.2.9}Pacotes e imports em arquivos com múltiplas estruturas}{8}{subsubsection.1.2.9}%
 \contentsline {subsubsection}{\numberline {1.2.10}Convenções de nomenclatura}{9}{subsubsection.1.2.10}%
+\contentsline {subsection}{\numberline {1.3}Create executable Java applications with a main method; run a Java program from the command line; produce console output}{10}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Método \textit {main()}}{10}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Executando uma classe pela linha de comando}{11}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Passando parâmetros pela linha de comando}{11}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Compilação e execução}{11}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {1.3.5}javac}{12}{subsubsection.1.3.5}%
+\contentsline {subsubsection}{\numberline {1.3.6}Escolhendo a versão do Java na hora de compilar}{12}{subsubsection.1.3.6}%
+\contentsline {subsubsection}{\numberline {1.3.7}java}{13}{subsubsection.1.3.7}%
+\contentsline {subsubsection}{\numberline {1.3.8}Propriedades na linha de comando}{13}{subsubsection.1.3.8}%
+\contentsline {subsubsection}{\numberline {1.3.9}Classpath}{13}{subsubsection.1.3.9}%
+\contentsline {subsubsection}{\numberline {1.3.10}Configurando o classpath}{14}{subsubsection.1.3.10}%
+\contentsline {subsubsection}{\numberline {1.3.11}Arquivos .jar}{14}{subsubsection.1.3.11}%
+\contentsline {subsubsection}{\numberline {1.3.12}META-INF/Manifest.mf}{14}{subsubsection.1.3.12}%
+\contentsline {subsubsection}{\numberline {1.3.13}Perguntas}{15}{subsubsection.1.3.13}%
+\contentsline {subsection}{\numberline {1.4}Import other Java packages to make them accessible in your code}{16}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.}{16}{subsection.1.5}%

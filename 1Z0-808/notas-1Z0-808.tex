@@ -488,16 +488,303 @@ As regras de pacotes e \textbf{\textit{imports}} valem também para arquivos com
 \end{figure}
 
 
-\subsection*{Create executable Java applications with a main method; run a Java program from the command line; produce console output}
+\subsection{Create executable Java applications with a main method; run a Java program from the command line; produce console output}
+
+\begin{itemize}
+	\item Compilar \textit{javac \textbf{nome\_arquivo.java}}
+	\item Executar \textit{java \textbf{nome\_pacote.nome\_classe}}
+	\item Método \textit{\textbf{main()}} deve ser \textit{\textbf{public static void}}
+\end{itemize}
+
+Uma classe executável é uma classe que possui um método inicial para a execução do programa - o método \textit{main()}, que será chamado pela JVM. Classes sem o método \textit{main()} não são classes executáveis e não podem ser usadas como ponto inicial da aplicação.
+
+\subsubsection{Método \textit{main()}}
+
+Rregras para ser executado pela JVM:
+\begin{itemize}
+	\item Ser público (\textit{public});
+	\item Ser estático (\textit{static});
+	\item Não ter retorno (\textit{void});
+	\item Ter o nome \textit{main};
+	\item Receber como parâmetro um \textit{array} ou \textit{varargs} de \textit{String} (\textit{String[] ou String...}).
+\end{itemize}
+
+Exemplos:
+
+\begin{lstlisting}
+	//Parametro como array
+	public static void main (String[] args) {}
+	
+	//Parametro como varargs
+	public static void main (String... args) {}
+	
+	//A ordem dos modificadores nao importa
+	static public void main(String[] args) {}
+	
+	//O nome do parametro nao importa
+	public static void main (String... argumentos){}
+	
+	//Tambem e uma definicao valida de array
+	public static void main (String args[]) {}
+\end{lstlisting}
+
+\subsubsection{Executando uma classe pela linha de comando}
+
+Para executar uma classe com \textit{main()} pela linha de comando, devemos compilar o arquivo com o comando \textit{javac} e executar a classe com o comando \textit{java}. Exemplo com arquivo \textit{HelloWorld.java}:
+
+\begin{lstlisting}
+	$ javac HelloWorld.java
+	$
+	$ java HelloWorld
+	Hello World!
+\end{lstlisting}
+
+\subsubsection{Passando parâmetros pela linha de comando}
+
+\begin{lstlisting}
+public class HelloWorld{
+	public static void main(String[] args) {
+		//Lendo o valor da primeira posicao do array args
+		System.out.println("Hello " + args[0] + "!");
+	}
+}	
+\end{lstlisting}
+
+Informando o parâmetro:
+
+\begin{lstlisting}
+java HelloWorld Mario
+Hello Mario!
+\end{lstlisting}
+
+Os parâmetros devem ser separados por espaço. Cada parâmetro informado será armazenado em uma posição do array, na mesma ordem em que foi informado.
+
+\subsubsection{Compilação e execução}
+
+Para criar um programa java, é preciso escrever um código-fonte e, através de um compilador, gerar o executável (bytecode). O compilador do JDK (Java Development Kit) é o \textit{javac}. Para a prova de certificação, devemos conhecer o comportamento desse compilador.
+
+A execução do bytecode é feita pela JVM (Java Virtual Machine). O comando java invoca a máquina virtual para executar um programa java. Ao baixarmos o Java, podemos escolher baixar o JDK, que já vem com o JRE, ou somente o JRE (Java Runtime Environment), que inclui a Virtual Machine.
+
+Algumas questões da prova abordam aspectos fundamentais do processo de compilação e de execução. É necessário saber como os comandos \textit{javac} e o \textit{java} procuram os arquivos.
+
+\subsubsection{javac}
+
+Arquivo \textit{Prova.java} dentro do diretório do projeto:
+
+\begin{lstlisting}
+class Prova {
+	double tempo;
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+$ javac Prova.java
+\end{lstlisting}
+
+O bytecode da classe \textit{Prova} gerado na compilação é colocado no arquivo \textit{Prova.class} dentro do diretório de trabalho, projeto:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/estrutura1}
+	\caption[Pasta de trabalho]{Pasta de trabalho}
+	\label{fig:estrutura1}
+\end{figure}
+
+
+Vejamos qual é o comportamento do \textit{javac} com a utilização de pacotes. Colocamos o arquivo \textit{Prova.java} no diretório \textit{certificacao}:
+
+\begin{lstlisting}
+package certificacao;
+class Prova {
+	double tempo;
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+[certificacao]$ javac certificacao/Prova.java
+\end{lstlisting}
+
+Nesse exemplo, o arquivo \textit{Prova.class} é colocado no diretório certificacao.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/estrutura2}
+	\caption[Pasta de trabalho com \textit{package}]{Pasta de trabalho com \textit{package}}
+	\label{fig:estrutura2}
+\end{figure}
+
+\subsubsection{Escolhendo a versão do Java na hora de compilar}
+
+Na compilação, é possível definir em que versão do Java o código-fonte foi escrito. Isso é feito com a opção \textit{-source} do comando \textit{javac}. (\textit{javac MinhaClasse.java -source 1.3}).
+
+\subsubsection{java}
+
+Como exemplo do comando \textit{java}, criando o arquivo \textit{Teste.java} no mesmo diretório, no mesmo pacote:
+
+\begin{lstlisting}
+package certificacao;
+class Teste {
+	public static void main(String[] args) {
+		Prova p = new Prova();
+		p.tempo = 210;
+		System.out.println(p.tempo);
+	}
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+$ javac certificacao/Teste.java
+$ java certificacao.Teste
+\end{lstlisting}
+
+\begin{lstlisting}
+210.0
+\end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/estrutura3}
+	\caption[Pasta de trabalho com \textit{package} e várias classes]{Pasta de trabalho com \textit{package} e várias classes}
+	\label{fig:estrutura3}
+\end{figure}
+
+Somente o arquivo \textit{Teste.java} foi passado para o compilador. Nesse arquivo, a classe \textit{Teste} utiliza a classe \textit{Prova} que se encontra em outro arquivo, \textit{Prova.java}. Dessa forma, o compilador vai compilar automaticamente o arquivo \textit{Prova.java} se necessário.
+
+Para executar, é preciso passar o nome completo da classe desejada para a máquina virtual. O sufixo \textit{.class} não faz parte do nome da classe, então ele não aparece na invocação da máquina virtual pelo comando \textit{java}.
+
+\subsubsection{Propriedades na linha de comando}
+
+A prova ainda cobra conhecimentos sobre como executar um programa java passando parâmetros ou propriedades para a JVM e essas propriedades são identificadas pelo \textit{-D} antes delas. Este \textit{-D} não faz parte da chave.
+
+\begin{lstlisting}
+java -Dchave1=abc -Dchave2=def Foo xpto bar
+\end{lstlisting}
+
+\textbf{\textit{chave1=abc}} e \textbf{\textit{chave2=def}} são parâmetros/propriedades e \textbf{\textit{xpto}} e \textbf{\textit{bar}} são argumentos recebidos pelo método \textbf{\textit{main}}.
+
+\subsubsection{Classpath}
+
+Para compilar ou para executar, é necessário que os comandos \textit{javac} e \textit{java} possam encontrar as classes referenciadas pela aplicação java.
+
+A prova de certificação exige o conhecimento do algoritmo de busca das classes. As classes feitas pelo programador são encontradas através do \textit{classpath} (caminho das classes).
+
+O \textit{classpath} é formado por diretórios, jars e zips que contenham as classes e pacotes da nossa aplicação. Por padrão, o \textit{classpath} está configurado para o diretório corrente (\textit{\textbf{.}}).
+
+\subsubsection{Configurando o classpath}
+
+Há duas maneiras de configurar o classpath:
+
+\textbf{1}) Configurando a variável de ambiente \textit{CLASSPATH} no sistema operacional.
+
+Basta seguir as opções do SO em questão e definir a variável. \textbf{Isso é considerado uma má prática no dia a dia} porque é um \textit{classpath} global, que vai valer para qualquer programa java executado na máquina.
+
+\textbf{2}) Com as opções \textit{-cp} ou \textit{-classpath} dos comandos \textit{javac} ou \textit{java}.
+
+É a forma mais usada. Imagine que queremos usar alguma biblioteca junto com nosso programa:
+
+\begin{lstlisting}
+$ javac -cp /diretorio/biblioteca.jar Prova.java
+$ java -cp /diretorio/biblioteca.jar Prova
+\end{lstlisting}
+
+E podemos passar tanto caminhos de outras pastas como de JARs ou zips. Para passar mais de um parâmetro no \textit{classpath}, usamos o separador de parâmetros no SO (no Windows é ponto e vírgula, no Linux/Mac/Solaris/Unix são dois pontos):
+
+\begin{lstlisting}
+$ javac -cp /diretorio/biblioteca.jar;/outrodir/ scjp/Prova.java
+$ java -cp /diretorio/biblioteca.jar;/outrodir/ scjp.Prova
+\end{lstlisting}
+
+\subsubsection{Arquivos .jar}
+
+Para facilitar a distribuição de bibliotecas de classes ou de aplicativos, o JDK disponibiliza uma ferramenta para a compactação das classes java.
+
+Um arquivo JAR nada mais é que a pasta de nossas classes no formato ZIP mas com extensão .jar.
+
+Para criar um jar incluindo a pasta scjp:
+
+\begin{lstlisting}
+jar -cf bib.jar scjp
+\end{lstlisting}
+
+Para utilizar o \textit{jar}:
+
+\begin{lstlisting}
+java -cp bib.jar scjp.Prova
+\end{lstlisting}
+
+\subsubsection{META-INF/Manifest.mf}
+
+Ao criar o \textit{jar} usando o comando jar do JDK, ele cria automaticamente a pasta \textit{META-INF}, que é usada para configurações relativas ao nosso \textit{jar}. E dentro dela, cria o arquivo \textit{Manifest.mf}.
+
+Esse arquivo pode ser usado para algumas configurações. Por exemplo, é possível dizer qual classe do nosso \textit{jar} é a classe principal (Main-Class) e que deve ser executada.
+
+Basta criar um arquivo chamado \textit{Manifest.mf} com a seguinte instrução indicando a classe com o método \textit{main}:
+
+\begin{lstlisting}
+Main-Class: scjp.Teste
+\end{lstlisting}
+
+Para gerar o \textit{jar}:
+
+\begin{lstlisting}
+jar -cmf bib.jar meumanifest scjp
+\end{lstlisting}
+
+Para rodar um \textit{jar} com \textit{Main-Class}, basta usar:
+
+\begin{lstlisting}
+java -jar bib.jar
+\end{lstlisting}
+
+\subsubsection{Perguntas}
+
+\textbf{1)} Como compilar e rodar o arquivo \textit{A.java}, existente no diretório \textit{b}?
+
+\textbf{R:} \textit{javac b/A.java} e \textit{java b.A}
+\\
+
+\textbf{2)} O que pode acontecer ao tentarmos executar o código a seguir?
+
+\begin{lstlisting}
+class A {
+	public static void main(String[] args) {
+		System.out.println(args);
+		System.out.println(args.length);
+		System.out.println(args[0]);
+	}
+}
+\end{lstlisting}
+
+\textbf{R:} Ao rodar sem argumentos, ocorre uma \textit{ArrayIndexOutOfBoundsException} na linha 5.
+\\
+
+\textbf{3)} Como rodar a classe \textit{A.java} presente no diretório \textit{b}, que foi compactado em um arquivo chamado \textit{programa.jar}, sendo que não existe nenhum arquivo de manifesto?
+
+\begin{lstlisting}
+package b;
+class A {
+	public static void main(String[] args) {
+		System.out.println(args[0]);
+	}
+}
+\end{lstlisting}
+
+\textbf{R:} Para rodar um programa dentro de um \textit{jar} sem ter um manifesto, devemos usar o \textit{classpath} customizado. Colocamos o \textit{jar} no \textit{classpath} e dizemos qual classe desejamos rodar: \textit{java -cp programa.jar b.A}.
+\\
+
+\textbf{4)} Como compilar a classe A.java, definida como no pacote b presente no diretório b, e adicionar também o arquivo programa.jar na busca de classes durante a compilação? Lembre-se que . significa o diretório atual.
+
+\textbf{R:} Durante a compilação, para adicionar o arquivo \textit{programa.jar} ao \textit{classpath}, devemos usar \textit{-cp programa.jar} e, para especificar o arquivo adequado, usamos \textit{b/A.java}.
+
+Ficando assim: \textit{javac -cp programa.jar:. b/A.java}.
+\\
 
 
 
+\pagebreak
+\subsection{Import other Java packages to make them accessible in your code}
 
-
-\newpage
-
-\subsection*{Import other Java packages to make them accessible in your code}
-\subsection*{Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.}
+\subsection{Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.}
 
 	
 \end{document}
