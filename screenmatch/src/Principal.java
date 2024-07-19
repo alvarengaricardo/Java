@@ -4,7 +4,9 @@ import br.com.alvarenga.screenmatch.modelos.Episodio;
 import br.com.alvarenga.screenmatch.modelos.Filme;
 import br.com.alvarenga.screenmatch.modelos.Serie;
 
-// MRP 
+import java.util.ArrayList;
+
+// https://unibb.alura.com.br/course/java-listas-colecoes-dados/task/126225
 
 public class Principal {
     public static void main(String[] args) {
@@ -17,6 +19,11 @@ public class Principal {
         meuFilme2.setNome("Filme");
         meuFilme2.setAnoDeLancamento(2023);
         meuFilme2.setDuracaoEmMinutos(120);
+
+        var meuFilme3 = new Filme(); // por inferência
+        meuFilme3.setNome("Trilogia");
+        meuFilme3.setAnoDeLancamento(2011);
+        meuFilme3.setDuracaoEmMinutos(135);
 
         meuFilme.exibirFichaTecnica();
         meuFilme.avaliar(10);
@@ -41,6 +48,7 @@ public class Principal {
         CalculadoraDeTempo calculadoraDeTempo = new CalculadoraDeTempo();
         calculadoraDeTempo.incluir(meuFilme);
         calculadoraDeTempo.incluir(meuFilme2);
+        calculadoraDeTempo.incluir(meuFilme3);
         //System.out.println("Para assistir os filmes: " + calculadoraDeTempo.getTempoTotal() + " minutos.");
 
         calculadoraDeTempo.incluir(mandalorian);
@@ -56,6 +64,14 @@ public class Principal {
         episodio.setSerie(mandalorian);
         episodio.setTotalVisualizacoes(732);
         filtro.filtrar(episodio);
+
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(meuFilme2);
+        listaDeFilmes.add(meuFilme3);
+        System.out.println("Tamanho da lista: " + listaDeFilmes.size());
+        System.out.println("Elemento 0: " + listaDeFilmes.get(0).getNome());
+        System.out.println(listaDeFilmes.get(0).toString());
 
 
     }
