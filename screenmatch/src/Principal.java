@@ -10,20 +10,23 @@ import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("O poderoso chefão");
-        meuFilme.setAnoDeLancamento(1972);
+        Filme meuFilme = new Filme("O poderoso chefão", 1972);
+        //meuFilme.setNome("O poderoso chefão");
+        //meuFilme.setAnoDeLancamento(1972);
         meuFilme.setDuracaoEmMinutos(180);
 
-        Filme meuFilme2 = new Filme();
-        meuFilme2.setNome("Filme");
+        Filme meuFilme2 = new Filme("Filme", 2011);
+        //meuFilme2.setNome("Filme");
         meuFilme2.setAnoDeLancamento(2023);
         meuFilme2.setDuracaoEmMinutos(120);
 
-        var meuFilme3 = new Filme(); // por inferência
-        meuFilme3.setNome("Trilogia");
+        var meuFilme3 = new Filme("Trilogia", 2024); // por inferência
+        //meuFilme3.setNome("Trilogia");
         meuFilme3.setAnoDeLancamento(2011);
         meuFilme3.setDuracaoEmMinutos(135);
+
+        Filme meuFilme4 = new Filme("Meu Malvado Favorito", 210); // usando construtor.
+
 
         meuFilme.exibirFichaTecnica();
         meuFilme.avaliar(10);
@@ -33,12 +36,12 @@ public class Principal {
         System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.calcularMedia());
 
-        Serie mandalorian = new Serie();
-        mandalorian.setNome("Mandalorian");
+        Serie mandalorian = new Serie("Mandalorian", 40);
+        //mandalorian.setNome("Mandalorian");
         mandalorian.setAnoDeLancamento(2019);
         mandalorian.setTemporadas(3);
         mandalorian.setEpisodiosPorTemporada(8);
-        mandalorian.setMinutosPorEpisodio(40);
+        //mandalorian.setMinutosPorEpisodio(40);
         mandalorian.setAtiva(true);
         mandalorian.setIncluidoNoPlano(true);
         mandalorian.exibirFichaTecnica();

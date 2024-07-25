@@ -5,6 +5,11 @@ import br.com.alvarenga.screenmatch.calculos.Classificavel;
 public class Filme extends Titulo implements Classificavel {
     private String diretor;
 
+
+    public Filme(String nome, int anoDeLancamento) {
+        super(nome, anoDeLancamento);
+    }
+
     public String getDiretor() {
         return diretor;
     }
@@ -15,12 +20,11 @@ public class Filme extends Titulo implements Classificavel {
 
     @Override
     public int getClassificacao() {
-        return (int) calcularMedia()/2;
+        return (int) calcularMedia() / 2;
     }
 
     @Override
     public String toString() {
-        String string = "Filme: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
-        return string;
+        return "Filme: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
     }
 }
